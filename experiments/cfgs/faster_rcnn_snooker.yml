@@ -1,0 +1,9 @@
+EXP_DIR: faster_rcnn_alt_opt
+TRAIN:
+  BG_THRESH_LO: 0.0
+  USE_FLIPPED: False
+  SCALES: [720,]
+  MAX_SIZE: 1280
+TEST:
+  HAS_RPN: True
+  SCALES: [720,]
