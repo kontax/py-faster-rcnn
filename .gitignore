@@ -1,5 +1,9 @@
 *.pyc
+*.caffemodel
+*.pkl
 .ipynb_checkpoints
+data/snooker/
 lib/build
 lib/pycocotools/_mask.c
 lib/pycocotools/_mask.so
+output/
