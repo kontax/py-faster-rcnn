@@ -1,3 +1,13 @@
+### Faster R-CNN for Snooker
+
+This is a fork of the py-faster-rcnn project with modifications to allow it to be used with a dataset for recognizing objects on snooker tables. It has the following changes:
+ - lib/datasets/snooker.py: Used to load the labelled images and serialize them as pkl files
+ - lib/datasets/factory.py: Modified to include snooker.py
+ - tools/snooker_demo.py: Demo's the model output on some test images
+ - models/snooker_net/snooker/*: Caffe configuration files used for training/testing the model
+
+Original README.md continues below.
+
 ### Disclaimer
 
 The official Faster R-CNN code (written in MATLAB) is available [here](https://github.com/ShaoqingRen/faster_rcnn).
