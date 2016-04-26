@@ -40,10 +40,11 @@ LOG="experiments/logs/faster_rcnn_alt_opt_${NET}.txt.`date +'%Y-%m-%d_%H-%M-%S'`
 exec &> >(tee -a "$LOG")
 echo Logging output to "$LOG"
 
+# Re-add this if retraining with current weights
+#--weights data/snooker_models/${NET}.caffemodel \
 time ./tools/train_faster_rcnn_alt_opt.py --gpu ${GPU_ID} \
   --net_name ${NET} \
   --imdb ${TRAIN_IMDB} \
-  --weights data/imagenet_models/${NET}.v2.caffemodel \
   --cfg experiments/cfgs/faster_rcnn_snooker.yml 
 
 set +x
@@ -55,3 +56,4 @@ time ./tools/test_net.py --gpu ${GPU_ID} \
   --net ${NET_FINAL} \
   --imdb ${TEST_IMDB} \
   --cfg experiments/cfgs/faster_rcnn_snooker.yml
+

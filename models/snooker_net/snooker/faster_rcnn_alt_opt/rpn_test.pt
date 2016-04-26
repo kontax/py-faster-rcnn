@@ -1,4 +1,4 @@
-name: "VGG_CNN_M_1024"
+name: "snooker_net"
 input: "data"
 input_shape {
   dim: 1

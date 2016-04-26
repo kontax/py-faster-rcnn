@@ -1,4 +1,4 @@
-name: "VGG_CNN_M_1024"
+name: "snooker_net"
 layer {
   name: 'data'
   type: 'Python'
