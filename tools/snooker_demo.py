@@ -36,8 +36,8 @@ NETS = {'vgg16': ('VGG16',
                   'VGG16_faster_rcnn_final.caffemodel'),
         'zf': ('ZF',
                   'ZF_faster_rcnn_final.caffemodel'),
-        'snooker': ('VGG_CNN_M_1024',
-                    'snooker_net.caffemodel')}
+        'snooker': ('snooker',
+                    'snooker.caffemodel')}
 
 
 def demo(net, image_name):
@@ -121,12 +121,12 @@ if __name__ == '__main__':
 
     prototxt = os.path.join(cfg.MODELS_DIR, NETS[args.demo_net][0],
                             'faster_rcnn_alt_opt', 'faster_rcnn_test.pt')
-    caffemodel = os.path.join(cfg.DATA_DIR, 'faster_rcnn_models',
+    caffemodel = os.path.join(cfg.DATA_DIR, 'snooker',
                               NETS[args.demo_net][1])
 
     if not os.path.isfile(caffemodel):
-        raise IOError(('{:s} not found.\nDid you run ./data/script/'
-                       'fetch_faster_rcnn_models.sh?').format(caffemodel))
+        raise IOError('{:s} not found.\nHave you trained the model?'
+                      .format(caffemodel))
 
     if args.cpu_mode:
         caffe.set_mode_cpu()
