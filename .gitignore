@@ -2,6 +2,7 @@
 *.caffemodel
 *.pkl
 .ipynb_checkpoints
+.idea/
 data/snooker/
 lib/build
 lib/pycocotools/_mask.c
