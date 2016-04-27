@@ -152,5 +152,5 @@ setup(
     name='fast_rcnn',
     ext_modules=ext_modules,
     # inject our custom trigger
-    cmdclass={'build_ext': custom_build_ext},
+    cmdclass={'build_ext': custom_build_ext}, requires=['cv2', 'matplotlib', 'numpy']
 )

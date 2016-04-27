@@ -8,8 +8,10 @@
 from fast_rcnn.config import cfg
 from utils.blob import im_list_to_blob
 from utils.timer import Timer
+import matplotlib.pyplot as plt
 import numpy as np
 import cv2
+
 
 def _vis_proposals(im, dets, thresh=0.5):
     """Draw detected bounding boxes."""
@@ -30,7 +32,7 @@ def _vis_proposals(im, dets, thresh=0.5):
                           bbox[2] - bbox[0],
                           bbox[3] - bbox[1], fill=False,
                           edgecolor='red', linewidth=3.5)
-            )
+        )
         ax.text(bbox[0], bbox[1] - 2,
                 '{:s} {:.3f}'.format(class_name, score),
                 bbox=dict(facecolor='blue', alpha=0.5),
@@ -39,10 +41,11 @@ def _vis_proposals(im, dets, thresh=0.5):
     ax.set_title(('{} detections with '
                   'p({} | box) >= {:.1f}').format(class_name, class_name,
                                                   thresh),
-                  fontsize=14)
+                 fontsize=14)
     plt.axis('off')
     plt.tight_layout()
     plt.draw()
+
 
 def _get_image_blob(im):
     """Converts an image into a network input.
@@ -81,6 +84,7 @@ def _get_image_blob(im):
 
     return blob, im_info
 
+
 def im_proposals(net, im):
     """Generate RPN proposals on a single image."""
     blobs = {}
@@ -88,13 +92,14 @@ def im_proposals(net, im):
     net.blobs['data'].reshape(*(blobs['data'].shape))
     net.blobs['im_info'].reshape(*(blobs['im_info'].shape))
     blobs_out = net.forward(
-            data=blobs['data'].astype(np.float32, copy=False),
-            im_info=blobs['im_info'].astype(np.float32, copy=False))
+        data=blobs['data'].astype(np.float32, copy=False),
+        im_info=blobs['im_info'].astype(np.float32, copy=False))
 
     scale = blobs['im_info'][0, 2]
     boxes = blobs_out['rois'][:, 1:].copy() / scale
     scores = blobs_out['scores'].copy()
     return boxes, scores
+
 
 def imdb_proposals(net, imdb):
     """Generate RPN proposals on all images in an imdb."""
@@ -107,7 +112,7 @@ def imdb_proposals(net, imdb):
         imdb_boxes[i], scores = im_proposals(net, im)
         _t.toc()
         print 'im_proposals: {:d}/{:d} {:.3f}s' \
-              .format(i + 1, imdb.num_images, _t.average_time)
+            .format(i + 1, imdb.num_images, _t.average_time)
         if 0:
             dets = np.hstack((imdb_boxes[i], scores))
             # from IPython import embed; embed()

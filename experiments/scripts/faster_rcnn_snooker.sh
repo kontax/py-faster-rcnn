@@ -7,7 +7,7 @@
 # ./experiments/scripts/faster_rcnn_alt_opt.sh 0 VGG_CNN_M_1024 pascal_voc \
 #   --set EXP_DIR foobar RNG_SEED 42 TRAIN.SCALES "[400, 500, 600, 700]"
 
-if [ ! -f data/models/VGG_CNN_M_1024.caffemodel ]; then
+if [ ! -f data/imagenet_models/VGG_CNN_M_1024.v2.caffemodel ]; then
     echo "The VGG_CNN_M_1024.caffemodel file was not found."
     echo "Run the data/scripts/fetch_imagenet_models.sh script first."
     exit 1
@@ -49,7 +49,7 @@ echo Logging output to "$LOG"
 time ./tools/train_faster_rcnn_alt_opt.py --gpu ${GPU_ID} \
   --net_name ${NET} \
   --imdb ${TRAIN_IMDB} \
-  --weights data/models/VGG_CNN_M_1024.caffemodel \
+  --weights data/imagenet_models/VGG_CNN_M_1024.v2.caffemodel \
   --cfg experiments/cfgs/faster_rcnn_snooker.yml 
 
 set +x
