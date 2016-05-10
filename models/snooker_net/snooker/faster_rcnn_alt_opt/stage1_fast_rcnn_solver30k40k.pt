@@ -3,7 +3,7 @@ train_net: "models/snooker_net/snooker/faster_rcnn_alt_opt/stage1_fast_rcnn_trai
 base_lr: 0.001
 lr_policy: "step"
 gamma: 0.1
-stepsize: 30000
+stepsize: 10000
 display: 20
 average_loss: 100
 momentum: 0.9
